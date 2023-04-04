@@ -11,3 +11,16 @@ def profit(prices):
     return max(profits)
 
 print(profit(prices = prices))
+
+# yukarıdaki çözüm aslında çalışıyor ancak zaman hatasına takılıyor bu yüzden şöyle bir çözüm daha var
+class Solution:
+    def maxProfit(self, prices: List[int]) -> int:
+        min_price = float("inf") # bunun amacı min_price değişkenine listenin ilk elemanını atayabilmek çünkü kendisi her zaman herhangi bir sayıdan büyük.
+        max_profit = 0
+
+        for price in prices:
+            if price < min_price: # burada işlem True oluyor ve min_price Price'a eşitleniyor yani verilen listenin ilk elemanına.
+                min_price = price
+            else:
+                max_profit = max(max_profit, price - min_price)
+        return max_profit
